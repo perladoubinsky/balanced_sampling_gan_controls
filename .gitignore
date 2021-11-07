@@ -1,0 +1,16 @@
+__pycache__/
+.ipynb_checkpoints/
+*.py[cod]
+
+*.jpg
+*.png
+*.jpeg
+*.npy
+*.sh
+log.txt
+
+/results/
+/models/pretrain/
+/predictors/pretrain/
+/data/
+!/boundaries_balanced_sampling/*.npy
