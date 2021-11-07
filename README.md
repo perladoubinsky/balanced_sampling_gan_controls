@@ -10,13 +10,13 @@ Other differences with InterFaceGAN :
 
 In addition to generate the data, you can also generate the prediction for each attribute by specifying ``--generate_prediction``. Before hand, you need to download [our pre-trained attribute prediction model trained on CelebA] (https://drive.google.com/file/d/12ZpxZIuoTZYIMkhZQFKrDo6waEG8ejNq/view?usp=sharing) and put it in the folder ``predictors/pretrain``. We trained it using a multi-task setting with a cross-entropy loss for each attribute (Accuracy for 'Smile': 0.93, 'Gender': 0.98, 'Glasses': 0.99, 'Age': 0.86). The attributes scores are then given in the form of a python dictionary.
 
-``
+```bash
 python generate_data.py 
        -m pggan_celebahq \
        -o data/pggan_celebahq \
        -n 1000000 \
        --generate_prediction
-``
+```
 
 ## Learn a boundary
 
@@ -26,7 +26,8 @@ You need to specify :
 - the confidence threshold (used to select the most confident samples).
 and pass the dictionary containing the scores for all attributes (obtained at previous step).
 
-``python train_boundary_balancing.py \
+```bash
+python train_boundary_balancing.py \
         -o boundaries_balancing \
         -c data/pggan_celebahq/z.npy \
         -s data/pggan_celebahq/scores_dict.npy 
@@ -34,22 +35,23 @@ and pass the dictionary containing the scores for all attributes (obtained at pr
         -n 1000 \
         -t 0.9 \
         --boundary_name 'pggan_celebahq_gender_boundary.npy'
-``
+```
 
 You can find boundaries already computed in the fodler ``boundaries/balancing``.
 
 ## Edit
 
-``python edit.py \
+```bash
+python edit.py \
         -m pggan_celebahq \
         -b boundaries_balancing/pggan_celebahq_gender_boundary.npy \
         -n 1 \
         -o results/pggan_celebahq_gender_editing
-``
+```
 
 ## Multi-attribute balanced sampling
 
-You can find our sampling function `contingency_sample()` in `ma_sampling.py`.
+You can find our sampling function `contingency_sample()` in `mab_sampling.py`.
 
 ## Acknowledgement
 
