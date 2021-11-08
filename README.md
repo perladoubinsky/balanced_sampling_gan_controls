@@ -25,11 +25,11 @@ You need to specify :
 - the number of samples to use to compute the boundary (we recommend to inspect the contingency matrix and choose the number of samples according to the number of samples representing the rarest combination e.g. 1M PGGAN CelebAHQ data --> 1000 samples).
 - the confidence threshold (used to select the most confident samples).
 
-And pass the dictionary containing the scores for all attributes (obtained at previous step).
+And pass the dictionary ``scores_dict.npy`` containing the scores for all attributes (obtained at previous step).
 
 ```bash
-python train_boundary_balancing.py \
-        -o boundaries_balancing \
+python train_boundary_balanced_sampling.py \
+        -o boundaries_balanced_sampling \
         -c data/pggan_celebahq/z.npy \
         -s data/pggan_celebahq/scores_dict.npy 
         -a 'Gender' \
