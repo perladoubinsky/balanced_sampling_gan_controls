@@ -8,7 +8,7 @@ Other differences with InterFaceGAN :
 
 ## Generate data
 
-In addition to generate the data, you can also generate the prediction for each attribute by specifying ``--generate_prediction``. Before hand, you need to download [our pre-trained attribute prediction model trained on CelebA] (https://drive.google.com/file/d/12ZpxZIuoTZYIMkhZQFKrDo6waEG8ejNq/view?usp=sharing) and put it in the folder ``predictors/pretrain``. We trained it using a multi-task setting with a cross-entropy loss for each attribute (Accuracy for 'Smile': 0.93, 'Gender': 0.98, 'Glasses': 0.99, 'Age': 0.86). The attributes scores are then given in the form of a python dictionary.
+In addition to generate the data, you can also generate the prediction for each attribute by specifying ``--generate_prediction``. Before hand, you need to download [our pre-trained attribute prediction model trained on CelebA](https://drive.google.com/file/d/12ZpxZIuoTZYIMkhZQFKrDo6waEG8ejNq/view?usp=sharing) and put it in the folder ``predictors/pretrain``. We trained it using a multi-task setting with a cross-entropy loss for each attribute (Accuracy for 'Smile': 0.93, 'Gender': 0.98, 'Glasses': 0.99, 'Age': 0.86). The attributes scores are then given in the form of a python dictionary.
 
 ```bash
 python generate_data.py 
@@ -22,9 +22,10 @@ python generate_data.py
 
 You need to specify :
 - the attribute you want to control (choose among 'Smile', 'Age', 'Gender', 'Glasses').
-- the number of samples to use to compute the boundary (we recommend to inspect the contingency matrix and choose the number of samples according to the number of samples reprensenting the rarest combination e.g. 1M PGGAN data --> 1000 samples).
+- the number of samples to use to compute the boundary (we recommend to inspect the contingency matrix and choose the number of samples according to the number of samples representing the rarest combination e.g. 1M PGGAN CelebAHQ data --> 1000 samples).
 - the confidence threshold (used to select the most confident samples).
-and pass the dictionary containing the scores for all attributes (obtained at previous step).
+
+And pass the dictionary containing the scores for all attributes (obtained at previous step).
 
 ```bash
 python train_boundary_balancing.py \
@@ -37,7 +38,7 @@ python train_boundary_balancing.py \
         --boundary_name 'pggan_celebahq_gender_boundary.npy'
 ```
 
-You can find boundaries already computed in the fodler ``boundaries/balancing``.
+You can find already computed boundaries in the fodler ``boundaries_balanced_sampling``.
 
 ## Edit
 
