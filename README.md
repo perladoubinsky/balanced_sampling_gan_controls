@@ -3,7 +3,7 @@
 In this work, we propose a simple and general approach to avoid the post-processing step often necessary in latent space editing methods to disentangle the controls after extraction from the latent space of GANs. We apply it in the context of InterFaceGAN a well-known method which allows to extract controls associated with facial attributes. Our method simply consists in balancing the semantics of the dataset before learning the boundary. For more details, please check [our paper](https://arxiv.org/abs/2111.00909).
 
 Other differences with InterFaceGAN :
-* We select samples for which there is a high confidence for all attributes (since we balance the data w.r.t. to every available attribute, we need to make sure the labelling is accurate)
+* We select samples for which there is a high confidence across all attributes (since we balance the data w.r.t. to every available attribute, we need to make sure the labelling is accurate)
 * We compute the boundary using the line connecting the centroids of the two classes instead of using SVMs (as it gives better results on balanced data).
 
 ## Generate data
@@ -22,8 +22,9 @@ python generate_data.py
 
 You need to specify :
 - the attribute you want to control (choose among 'Smile', 'Age', 'Gender', 'Glasses').
-- the number of samples to use to compute the boundary (we recommend to inspect the contingency matrix and choose the number of samples according to the number of samples representing the rarest combination e.g. 1M PGGAN CelebAHQ data --> 1000 samples).
 - the confidence threshold (used to select the most confident samples).
+- the number of samples to use to compute the boundary (we recommend to inspect the contingency matrix and choose the number of samples according to the number of samples representing the rarest combination).
+
 
 And pass the dictionary ``scores_dict.npy`` containing the scores for all attributes (obtained at previous step).
 
@@ -54,12 +55,12 @@ python edit.py \
 
 You can find our sampling function `contingency_sample()` in `mab_sampling.py`.
 
-## Acknowledgement
+## Acknowledgements
 
 This code is built upon [InterfaceGAN](https://github.com/genforce/interfacegan) and [Higan](https://github.com/genforce/higan) (for the predictors).
 
 
-## BibTeX
+## Citation
 
 ```bibtex
 @misc{doubinsky2021multiattribute,
@@ -69,23 +70,5 @@ This code is built upon [InterfaceGAN](https://github.com/genforce/interfacegan)
       eprint={2111.00909},
       archivePrefix={arXiv},
       primaryClass={cs.LG}
-}
-```
-
-```bibtex
-@inproceedings{shen2020interpreting,
-  title     = {Interpreting the Latent Space of GANs for Semantic Face Editing},
-  author    = {Shen, Yujun and Gu, Jinjin and Tang, Xiaoou and Zhou, Bolei},
-  booktitle = {CVPR},
-  year      = {2020}
-}
-```
-
-```bibtex
-@article{shen2020interfacegan,
-  title   = {InterFaceGAN: Interpreting the Disentangled Face Representation Learned by GANs},
-  author  = {Shen, Yujun and Yang, Ceyuan and Tang, Xiaoou and Zhou, Bolei},
-  journal = {TPAMI},
-  year    = {2020}
 }
 ```
