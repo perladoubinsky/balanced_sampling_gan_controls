@@ -1,6 +1,6 @@
 # Multi-attribute balanced sampling for disentangled GAN controls
 
-In this work, we propose a simple and general approach to avoid the post-processing step often necessary in latent space editing methods to disentangle the controls after extraction from the latent space of GANs. We apply it in the context of InterFaceGAN a well-known method which allows to extract controls associated with facial attributes. Our method simply consists in balancing the semantics of the dataset before learning the boundary.
+In this work, we propose a simple and general approach to avoid the post-processing step often necessary in latent space editing methods to disentangle the controls after extraction from the latent space of GANs. We apply it in the context of InterFaceGAN a well-known method which allows to extract controls associated with facial attributes. Our method simply consists in balancing the semantics of the dataset before learning the boundary. For more details, please check [our paper](https://arxiv.org/abs/2111.00909).
 
 Other differences with InterFaceGAN :
 * We select samples for which there is a high confidence for all attributes (since we balance the data w.r.t. to every available attribute, we need to make sure the labelling is accurate)
@@ -29,7 +29,7 @@ And pass the dictionary ``scores_dict.npy`` containing the scores for all attrib
 
 ```bash
 python train_boundary_balanced_sampling.py \
-        -o boundaries_balanced_sampling \
+        -o boundaries_balanced_sampling/pggan_celebahs_gender \
         -c data/pggan_celebahq/z.npy \
         -s data/pggan_celebahq/scores_dict.npy 
         -a 'Gender' \
