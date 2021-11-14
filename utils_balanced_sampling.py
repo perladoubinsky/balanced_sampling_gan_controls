@@ -15,7 +15,8 @@ def get_most_confident_samples(scores_dict, t):
     confident_scores = np.concatenate(confident_scores, axis=1)
     confident_scores = confident_scores.all(axis=1)
     idx = np.where(confident_scores==True)[0]
-    return np.random.shuffle(idx)
+    np.random.shuffle(idx)
+    return idx
 
 def dict_to_np(scores_dict):
     scores = []
