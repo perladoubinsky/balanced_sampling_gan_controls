@@ -8,7 +8,7 @@ Other differences with InterFaceGAN :
 
 ## Installation 
 
-You can install a conda environement using ```bash pip install -r requirements.txt```.
+You can install a compatible conda environement using ```conda env create -f environement.yml```.
 
 ## Generate data
 
@@ -43,7 +43,7 @@ python train_boundary_balanced_sampling.py \
         --boundary_name 'pggan_celebahq_gender_boundary.npy'
 ```
 
-You can find already computed boundaries in the fodler ``boundaries_balanced_sampling``.
+You can find already computed boundaries in the folder ``boundaries_balanced_sampling``.
 
 ## Edit
 
