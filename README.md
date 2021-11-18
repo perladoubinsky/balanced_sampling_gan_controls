@@ -8,14 +8,14 @@ Other differences with InterFaceGAN :
 
 ## Installation 
 
-You can install a compatible conda environement using ```conda env create -f environement.yml```.
+You can install a compatible conda environement using ```conda env create -f environment.yml```.
 
 ## Generate data
 
 In addition to generate the data, you can also generate the prediction for each attribute by specifying ``--generate_prediction``. Before hand, you need to download [our pre-trained attribute prediction model trained on CelebA](https://drive.google.com/file/d/12ZpxZIuoTZYIMkhZQFKrDo6waEG8ejNq/view?usp=sharing) and put it in the folder ``predictors/pretrain``. We trained it using a multi-task setting with a cross-entropy loss for each attribute (Accuracy for 'Smile': 0.93, 'Gender': 0.98, 'Glasses': 0.99, 'Age': 0.86). The attributes scores are then given in the form of a python dictionary.
 
 ```bash
-python generate_data.py 
+python generate_data.py \
        -m pggan_celebahq \
        -o data/pggan_celebahq \
        -n 1000000 \
@@ -34,13 +34,12 @@ And pass the dictionary ``scores_dict.npy`` containing the `s`cores for all attr
 
 ```bash
 python train_boundary_balanced_sampling.py \
-        -o boundaries_balanced_sampling/pggan_celebahs_gender \
+        -o boundaries_balanced_sampling/pggan_celebahq_gender \
         -c data/pggan_celebahq/z.npy \
-        -s data/pggan_celebahq/scores_dict.npy 
+        -s data/pggan_celebahq/scores_dict.npy \
         -a 'Gender' \
         -n 1000 \
-        -t 0.9 \
-        --boundary_name 'pggan_celebahq_gender_boundary.npy'
+        -t 0.9
 ```
 
 You can find already computed boundaries in the folder ``boundaries_balanced_sampling``.
@@ -57,7 +56,7 @@ Other options are available (use ``python edit.py --help``)
 ```bash
 python edit.py \
         -m pggan_celebahq \
-        -b boundaries_balancing/pggan_celebahq_gender_boundary.npy \
+        -b boundaries_balanced_sampling/pggan_celebahq_gender/boundary.npy \
         -n 1 \
         -o results/pggan_celebahq_gender_editing
 ```
