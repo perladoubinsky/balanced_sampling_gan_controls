@@ -3,7 +3,7 @@ import argparse
 import numpy as np
 
 from utils.logger import setup_logger
-from utils_balancing import train_boundary
+from utils_balanced_sampling import train_boundary
 
 def parse_args():
   """Parses arguments."""
